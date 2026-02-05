@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProspexAI - Proposta Comercial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --gold: #FFD700;
+      --gold-dark: #FFA500;
+      --bg-dark: #0A0A0A;
+      --bg-card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.6);
+      --text-muted-more: rgba(255,255,255,0.4);
+      --red: #f87171;
+      --green: #4ade80;
+      --blue: #60a5fa;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    
+    /* ===== NAVIGATION ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+    }
+    
+    .nav-logo {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover { color: var(--gold); }
+    
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,215,0,0.3);
+    }
+    
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+    }
+    
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,215,0,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,165,0,0.08) 0%, transparent 40%);
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 32px;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    .hero-badge .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+    
+    .hero h1 .gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    .hero-metrics {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-bottom: 48px;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+    
+    .hero-metric {
+      text-align: center;
+    }
+    
+    .hero-metric-value {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+    
+    .hero-metric-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      border: none;
+    }
+    
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #000;
+    }
+    
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(255,215,0,0.35);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 40px; }
+      .hero-metrics { flex-direction: column; gap: 24px; }
+      .hero-ctas { flex-direction: column; }
+    }
+    
+    /* ===== SECTIONS ===== */
+    .section {
+      padding: 100px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-tag {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.8;
+    }
+    
+    .gold { color: var(--gold); }
+    .red { color: var(--red); }
+    .green { color: var(--green); }
+    .blue { color: var(--blue); }
+    
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* ===== PROBLEMA ===== */
+    .problema-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    
+    .problema-card {
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+    
+    .problema-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(239,68,68,0.4);
+    }
+    
+    .problema-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(239,68,68,0.15);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    
+    .problema-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    
+    .problema-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    
+    @media (max-width: 900px) {
+      .problema-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* ===== SOLUÇÃO - 5 AGENTES ===== */
+    .agentes-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(255,215,0,0.03) 50%, transparent 100%);
+      padding: 100px 24px;
+    }
+    
+    .agentes-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .agentes-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 48px 0;
+      flex-wrap: wrap;
+    }
+    
+    .agente-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      min-width: 160px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .agente-card:hover, .agente-card.active {
+      background: rgba(255,215,0,0.08);
+      border-color: rgba(255,215,0,0.3);
+      transform: translateY(-4px);
+    }
+    
+    .agente-card .emoji {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+    
+    .agente-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .agente-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .flow-arrow {
+      font-size: 24px;
+      color: var(--gold);
+    }
+    
+    .agente-detail {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      margin-top: 32px;
+      display: none;
+    }
+    
+    .agente-detail.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .agente-detail-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .agente-detail-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    
+    .agente-detail h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    
+    .agente-detail-subtitle {
+      color: var(--text-muted);
+    }
+    
+    .agente-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    
+    .agente-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+    }
+    
+    .agente-feature-icon {
+      color: var(--gold);
+      font-size: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .agentes-flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+      .agente-features { grid-template-columns: 1fr; }
+    }
+    
+    /* ===== PRODUTOS TABS ===== */
+    .produtos-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    
+    .produto-tab {
+      padding: 16px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .produto-tab:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .produto-tab.active {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #000;
+      border-color: transparent;
+    }
+    
+    .produto-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    .produto-content.active {
+      display: block;
+    }
+    
+    .produto-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    .produto-info h3 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    
+    .produto-info p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+    
+    .produto-features {
+      list-style: none;
+    }
+    
+    .produto-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .produto-features li:last-child {
+      border-bottom: none;
+    }
+    
+    .check-icon {
+      color: var(--green);
+      font-size: 20px;
+    }
+    
+    .produto-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+    }
+    
+    .produto-price {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .produto-price-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .produto-price-value {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    
+    .produto-price-period {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+    
+    @media (max-width: 900px) {
+      .produto-hero { grid-template-columns: 1fr; }
+    }
+    
+    /* ===== CALCULADORA ROI ===== */
+    .calc-section {
+      background: linear-gradient(180deg, rgba(255,215,0,0.04) 0%, transparent 100%);
+      padding: 100px 24px;
+    }
+    
+    .calc-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+    
+    .calc-inputs {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+    }
+    
+    .calc-inputs h3 {
+      font-size: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .input-group {
+      margin-bottom: 24px;
+    }
+    
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 16px;
+      font-family: inherit;
+    }
+    
+    .input-group input:focus, .input-group select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    
+    .input-group select option {
+      background: var(--bg-dark);
+    }
+    
+    .slider-container {
+      margin-top: 8px;
+    }
+    
+    .slider-value {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .slider-value span:first-child {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    
+    input[type="range"] {
+      width: 100%;
+      height: 8px;
+      -webkit-appearance: none;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      outline: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    .calc-results {
+      background: rgba(255,215,0,0.05);
+      border: 2px solid rgba(255,215,0,0.2);
+      border-radius: 24px;
+      padding: 40px;
+    }
+    
+    .calc-results h3 {
+      font-size: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+    }
+    
+    .result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .result-label {
+      color: var(--text-muted);
+    }
+    
+    .result-value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    .result-value.gold { color: var(--gold); }
+    .result-value.green { color: var(--green); }
+    
+    .roi-highlight {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    
+    .roi-highlight p {
+      color: rgba(0,0,0,0.7);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .roi-highlight .big-number {
+      font-size: 64px;
+      font-weight: 900;
+      color: #000;
+      line-height: 1;
+    }
+    
+    @media (max-width: 900px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* ===== COMPARATIVO ===== */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 48px;
+    }
+    
+    .compare-table th, .compare-table td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .compare-table th {
+      background: var(--bg-card);
+      font-weight: 600;
+    }
+    
+    .compare-table th:first-child {
+      border-radius: 12px 0 0 0;
+    }
+    
+    .compare-table th:last-child {
+      border-radius: 0 12px 0 0;
+    }
+    
+    .compare-table th.highlight {
+      background: rgba(255,215,0,0.1);
+      color: var(--gold);
+    }
+    
+    .compare-table td.highlight {
+      background: rgba(255,215,0,0.03);
+    }
+    
+    .compare-check { color: var(--green); font-size: 20px; }
+    .compare-x { color: var(--red); font-size: 20px; }
+    .compare-partial { color: var(--gold); font-size: 14px; }
+    
+    /* ===== PLANOS ===== */
+    .planos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    
+    .plano-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    
+    .plano-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    .plano-card.featured {
+      border: 2px solid var(--gold);
+      background: rgba(255,215,0,0.03);
+    }
+    
+    .plano-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .plano-header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .plano-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .plano-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    
+    .plano-price {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    
+    .plano-price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    
+    .plano-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    
+    .plano-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 15px;
+    }
+    
+    .plano-features .icon {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    
+    @media (max-width: 900px) {
+      .planos-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* ===== FAQ ===== */
+    .faq-list {
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .faq-question:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .faq-question h4 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .faq-icon {
+      font-size: 24px;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+    
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .faq-answer-content {
+      padding: 0 24px 24px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+    
+    /* ===== CTA FINAL ===== */
+    .cta-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(255,215,0,0.05) 100%);
+      padding: 120px 24px;
+      text-align: center;
+    }
+    
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cta-section h2 {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+    
+    .cta-section p {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    .footer p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    /* ===== GARANTIAS ===== */
+    .garantias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    
+    .garantia-card {
+      background: rgba(34,197,94,0.05);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .garantia-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(34,197,94,0.4);
+    }
+    
+    .garantia-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .garantia-card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    
+    .garantia-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    @media (max-width: 900px) {
+      .garantias-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* ===== TESTIMONIALS ===== */
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+    
+    .testimonial-quote {
+      font-size: 18px;
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #000;
+    }
+    
+    .testimonial-name {
+      font-weight: 600;
+    }
+    
+    .testimonial-role {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    
+    /* ===== METRICS COUNTER ===== */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    
+    .metric-item {
+      text-align: center;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    
+    .metric-value {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    
+    @media (max-width: 900px) {
+      .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    /* ===== ANIMATIONS ===== */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="nav-logo">ProspexAI</div>
+    <ul class="nav-links">
+      <li><a href="#problema">O Problema</a></li>
+      <li><a href="#solucao">A Solução</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#calculadora">ROI</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://wa.me/5519999546490?text=Ol%C3%A1!%20Tenho%20interesse%20em%20conhecer%20a%20ProspexAI" class="nav-cta" target="_blank">Agendar Reunião →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse"></span>
+        Motor de Prospecção B2B com IA
+      </div>
+      <h1>Transforme <span class="gold">Leads Frios</span> em<br>Reuniões Qualificadas</h1>
+      <p class="hero-subtitle">
+        Automatize 100% da sua prospecção com 5 agentes de IA trabalhando 24/7. 
+        Coleta, enriquecimento, outreach multicanal e qualificação SPIN Selling — tudo no piloto automático.
+      </p>
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <div class="hero-metric-value">376%</div>
+          <div class="hero-metric-label">ROI Médio</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hero-metric-value">20-30%</div>
+          <div class="hero-metric-label">Taxa de Resposta</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hero-metric-value">2min</div>
+          <div class="hero-metric-label">Tempo por Lead</div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#calculadora" class="btn btn-gold">Calcular Meu ROI →</a>
+        <a href="#solucao" class="btn btn-outline">Ver Como Funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEMA -->
+  <section id="problema" class="section">
+    <div class="section-tag">O Problema</div>
+    <h2 class="section-title">Sua prospecção está <span class="red">travada?</span></h2>
+    <p class="section-subtitle">A maioria das empresas B2B enfrenta os mesmos desafios na geração de leads.</p>
+    
+    <div class="problema-grid animate-on-scroll">
+      <div class="problema-card">
+        <div class="problema-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>40% do tempo perdido</h3>
+        <p>Seus vendedores passam quase metade do dia prospectando em vez de vender. Um vendedor de R$ 6.000/mês gasta R$ 2.400 só buscando leads.</p>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <h3>Pipeline imprevisível</h3>
+        <p>Num mês cheio de reuniões, no outro vazio. Você depende de indicações e não sabe de onde virá o próximo cliente.</p>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h3>Leads frios demais</h3>
+        <p>Comprou listas, tentou ferramentas, mas a taxa de resposta nunca passa de 3-5%. Mensagens genéricas = ignoradas.</p>
+      </div>
+    </div>
+    
+    <div class="metrics-bar animate-on-scroll">
+      <div class="metric-item">
+        <div class="metric-value red">R$ 80-120</div>
+        <div class="metric-label">Custo por Lead (interno)</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value red">3-5%</div>
+        <div class="metric-label">Taxa de Resposta (cold)</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value red">3-6 meses</div>
+        <div class="metric-label">Ramp-up de SDR</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value red">60%</div>
+        <div class="metric-label">Turnover de SDRs</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOLUÇÃO - 5 AGENTES -->
+  <section id="solucao" class="agentes-section">
+    <div class="agentes-container">
+      <div style="text-align: center;">
+        <div class="section-tag">A Solução</div>
+        <h2 class="section-title">5 Agentes de IA trabalhando <span class="gold">24/7</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Cada agente é especialista em uma etapa do funil. Juntos, transformam leads brutos em reuniões qualificadas — automaticamente.</p>
+      </div>
+      
+      <div class="agentes-flow">
+        <div class="agente-card active" data-agente="collector">
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <h4>Collector</h4>
+          <p>Coleta de Leads</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="agente-card" data-agente="enricher">
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 16.5 5.7 21l2.3-7-6-4.6h7.6L12 2z"/></svg></div>
+          <h4>Enricher</h4>
+          <p>Enriquecimento</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="agente-card" data-agente="outreach">
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+          <h4>Outreach</h4>
+          <p>Sequências</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="agente-card" data-agente="sdr">
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
+          <h4>SDR IA</h4>
+          <p>Qualificação</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="agente-card" data-agente="analyst">
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+          <h4>Analyst</h4>
+          <p>Otimização</p>
+        </div>
+      </div>
+      
+      <div class="agente-detail active" id="detail-collector">
+        <div class="agente-detail-header">
+          <div class="agente-detail-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <div>
+            <h3>Agente Collector</h3>
+            <p class="agente-detail-subtitle">Coleta automática de 1.000-2.000 leads brutos por mês</p>
+          </div>
+        </div>
+        <div class="agente-features">
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Google Maps Scraping</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Extrai empresas por cidade, segmento e porte automaticamente</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>LinkedIn Sales Navigator</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Encontra decisores com perfil exato do seu ICP</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Deduplicação Inteligente</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Evita leads duplicados e já abordados</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Filtros Avançados</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Segmento, tamanho, região, tecnologias usadas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="agente-detail" id="detail-enricher">
+        <div class="agente-detail-header">
+          <div class="agente-detail-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 16.5 5.7 21l2.3-7-6-4.6h7.6L12 2z"/></svg></div>
+          <div>
+            <h3>Agente Enricher</h3>
+            <p class="agente-detail-subtitle">Transforma dados brutos em fichas completas com roteiro</p>
+          </div>
+        </div>
+        <div class="agente-features">
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Dados do Decisor</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Email verificado, telefone direto, LinkedIn pessoal</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Identificação de Gatilhos</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Funding, vaga de SDR, expansão, novo site</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Scoring Automático</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Classifica HOT/WARM/COLD baseado em 15+ critérios</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Roteiro SPIN Pronto</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Abertura, perguntas e CTAs personalizados por lead</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="agente-detail" id="detail-outreach">
+        <div class="agente-detail-header">
+          <div class="agente-detail-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+          <div>
+            <h3>Agente Outreach</h3>
+            <p class="agente-detail-subtitle">Sequências multicanal personalizadas com 8-12 toques</p>
+          </div>
+        </div>
+        <div class="agente-features">
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Email Sequencial</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Cold emails com warm-up, tracking e follow-ups automáticos</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>LinkedIn Automation</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Conexões, mensagens e comentários estratégicos</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>WhatsApp Business</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">98% de abertura com mensagens personalizadas</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Timing Inteligente</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Envia no melhor horário por canal e persona</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="agente-detail" id="detail-sdr">
+        <div class="agente-detail-header">
+          <div class="agente-detail-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><circle cx="8" cy="16" r="1" fill="#FFD700"/><circle cx="16" cy="16" r="1" fill="#FFD700"/></svg></div>
+          <div>
+            <h3>Agente SDR IA</h3>
+            <p class="agente-detail-subtitle">Qualificação consultiva com metodologia SPIN Selling</p>
+          </div>
+        </div>
+        <div class="agente-features">
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>SPIN Selling Nativo</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Situação, Problema, Implicação, Need-payoff integrados</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Memória Persistente</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Lembra de todas as conversas anteriores com o lead</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Tratamento de Objeções</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">RAG com banco de objeções treinado para seu nicho</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Agendamento Automático</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Integração direta com Google Calendar/Calendly</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="agente-detail" id="detail-analyst">
+        <div class="agente-detail-header">
+          <div class="agente-detail-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+          <div>
+            <h3>Agente Analyst</h3>
+            <p class="agente-detail-subtitle">Otimização contínua baseada em dados reais</p>
+          </div>
+        </div>
+        <div class="agente-features">
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Dashboard em Tempo Real</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">KPIs de cada etapa do funil atualizados constantemente</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Alertas de Anomalias</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Notifica quedas de performance antes de virar problema</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Sugestões de Otimização</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">IA sugere ajustes em prompts, horários e segmentos</p>
+            </div>
+          </div>
+          <div class="agente-feature">
+            <span class="agente-feature-icon">✓</span>
+            <div>
+              <strong>Relatórios Automáticos</strong>
+              <p style="color: var(--text-muted); font-size: 14px;">Diário e semanal enviados por email/Slack</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRODUTOS -->
+  <section id="produtos" class="section">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div class="section-tag">Nossos Produtos</div>
+      <h2 class="section-title">Escolha seu <span class="gold">modelo ideal</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Três formas de usar a ProspexAI: self-service, implementação ou done-for-you.</p>
+    </div>
+    
+    <div class="produtos-tabs">
+      <button class="produto-tab active" data-produto="ai">Prospex AI</button>
+      <button class="produto-tab" data-produto="setup">Prospex Setup</button>
+      <button class="produto-tab" data-produto="surge">Prospex Surge</button>
+    </div>
+    
+    <div class="produto-content active" id="produto-ai">
+      <div class="produto-hero">
+        <div class="produto-info">
+          <h3>Prospex AI <span style="color: var(--gold);">SaaS</span></h3>
+          <p>Plataforma self-service com os 5 agentes de IA. Você opera, nós fornecemos a tecnologia. Ideal para quem quer controle total e tem equipe para gerenciar.</p>
+          <ul class="produto-features">
+            <li><span class="check-icon">✓</span> Acesso aos 5 agentes de IA</li>
+            <li><span class="check-icon">✓</span> Dashboard de métricas completo</li>
+            <li><span class="check-icon">✓</span> Integrações com CRM</li>
+            <li><span class="check-icon">✓</span> Suporte por chat e email</li>
+            <li><span class="check-icon">✓</span> Onboarding guiado</li>
+          </ul>
+        </div>
+        <div class="produto-card">
+          <div class="produto-price">
+            <div class="produto-price-label">A partir de</div>
+            <div class="produto-price-value">R$ 297</div>
+            <div class="produto-price-period">/mês</div>
+          </div>
+          <ul class="produto-features">
+            <li><span class="check-icon">✓</span> Starter: 2.000 leads/mês</li>
+            <li><span class="check-icon">✓</span> Growth: 5.000 leads/mês</li>
+            <li><span class="check-icon">✓</span> Pro: 10.000 leads/mês</li>
+          </ul>
+          <a href="#planos" class="btn btn-gold" style="width: 100%; margin-top: 24px;">Ver Planos Detalhados</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="produto-content" id="produto-setup">
+      <div class="produto-hero">
+        <div class="produto-info">
+          <h3>Prospex Setup <span style="color: var(--gold);">Implementação</span></h3>
+          <p>Implementamos toda a infraestrutura de prospecção na SUA empresa em 2-4 semanas. Você paga uma vez, usa para sempre. Ideal para quem quer autonomia total.</p>
+          <ul class="produto-features">
+            <li><span class="check-icon">✓</span> Workshop de ICP detalhado</li>
+            <li><span class="check-icon">✓</span> Configuração completa dos 5 agentes</li>
+            <li><span class="check-icon">✓</span> Integrações configuradas</li>
+            <li><span class="check-icon">✓</span> Treinamento da equipe (4h)</li>
+            <li><span class="check-icon">✓</span> Documentação completa</li>
+            <li><span class="check-icon">✓</span> Suporte pós-go-live</li>
+          </ul>
+        </div>
+        <div class="produto-card">
+          <div class="produto-price">
+            <div class="produto-price-label">Investimento único</div>
+            <div class="produto-price-value">R$ 9.997</div>
+            <div class="produto-price-period">pacote Profissional</div>
+          </div>
+          <ul class="produto-features">
+            <li><span class="check-icon">✓</span> Essencial: R$ 4.997</li>
+            <li><span class="check-icon">✓</span> Profissional: R$ 9.997</li>
+            <li><span class="check-icon">✓</span> Enterprise: R$ 14.997</li>
+          </ul>
+          <a href="https://wa.me/5519999546490?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Prospex%20Setup.%20Pode%20me%20enviar%20uma%20proposta%3F" class="btn btn-gold" style="width: 100%; margin-top: 24px;" target="_blank">Solicitar Proposta</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="produto-content" id="produto-surge">
+      <div class="produto-hero">
+        <div class="produto-info">
+          <h3>Prospex Surge <span style="color: var(--gold);">Done-For-You</span></h3>
+          <p>Serviço premium onde NÓS operamos tudo. Você só recebe leads qualificados prontos para seu time abordar. Zero esforço, máximo resultado.</p>
+          <ul class="produto-features">
+            <li><span class="check-icon">✓</span> Leads 100% qualificados entregues</li>
+            <li><span class="check-icon">✓</span> Ficha completa do decisor</li>
+            <li><span class="check-icon">✓</span> Roteiro de abordagem SPIN pronto</li>
+            <li><span class="check-icon">✓</span> Gatilhos de compra identificados</li>
+            <li><span class="check-icon">✓</span> Relatórios semanais</li>
+            <li><span class="check-icon">✓</span> Reunião mensal de revisão</li>
+          </ul>
+        </div>
+        <div class="produto-card">
+          <div class="produto-price">
+            <div class="produto-price-label">A partir de</div>
+            <div class="produto-price-value">R$ 2.497</div>
+            <div class="produto-price-period">/mês (50 leads)</div>
+          </div>
+          <ul class="produto-features">
+            <li><span class="check-icon">✓</span> Starter: 50 leads/mês</li>
+            <li><span class="check-icon">✓</span> Growth: 100 leads/mês</li>
+            <li><span class="check-icon">✓</span> Scale: 200 leads/mês</li>
+          </ul>
+          <a href="#planos" class="btn btn-gold" style="width: 100%; margin-top: 24px;">Ver Planos Detalhados</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CALCULADORA ROI -->
+  <section id="calculadora" class="calc-section">
+    <div class="calc-container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <div class="section-tag">Calculadora de ROI</div>
+        <h2 class="section-title">Quanto você pode <span class="gold">economizar?</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Simule o retorno do investimento com base nos seus números reais.</p>
+      </div>
+      
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <h3>Seus Dados Atuais</h3>
+          
+          <div class="input-group">
+            <label>Ticket Médio (R$)</label>
+            <div class="slider-container">
+              <div class="slider-value">
+                <span id="ticket-value">R$ 5.000</span>
+              </div>
+              <input type="range" id="ticket" min="1000" max="50000" value="5000" step="500">
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label>Leads Necessários por Mês</label>
+            <div class="slider-container">
+              <div class="slider-value">
+                <span id="leads-value">100</span>
+              </div>
+              <input type="range" id="leads" min="20" max="500" value="100" step="10">
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label>Taxa de Conversão Lead → Cliente (%)</label>
+            <div class="slider-container">
+              <div class="slider-value">
+                <span id="conversao-value">3%</span>
+              </div>
+              <input type="range" id="conversao" min="1" max="15" value="3" step="0.5">
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label>Plano ProspexAI</label>
+            <select id="plano">
+              <option value="297">Prospex AI Starter - R$ 297/mês</option>
+              <option value="597">Prospex AI Growth - R$ 597/mês</option>
+              <option value="997" selected>Prospex AI Pro - R$ 997/mês</option>
+              <option value="2497">Prospex Surge Starter - R$ 2.497/mês</option>
+              <option value="4497">Prospex Surge Growth - R$ 4.497/mês</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="calc-results">
+          <h3>Projeção de Resultados</h3>
+          
+          <div class="result-item">
+            <span class="result-label">Clientes Fechados/mês</span>
+            <span class="result-value" id="result-clientes">3</span>
+          </div>
+          
+          <div class="result-item">
+            <span class="result-label">Receita Gerada/mês</span>
+            <span class="result-value gold" id="result-receita">R$ 15.000</span>
+          </div>
+          
+          <div class="result-item">
+            <span class="result-label">Investimento/mês</span>
+            <span class="result-value" id="result-investimento">R$ 997</span>
+          </div>
+          
+          <div class="result-item">
+            <span class="result-label">Lucro Líquido/mês</span>
+            <span class="result-value green" id="result-lucro">R$ 14.003</span>
+          </div>
+          
+          <div class="roi-highlight">
+            <p>Retorno sobre Investimento</p>
+            <div class="big-number" id="result-roi">1.404%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMPARATIVO -->
+  <section class="section">
+    <div style="text-align: center;">
+      <div class="section-tag">Comparativo</div>
+      <h2 class="section-title">ProspexAI vs <span class="gold">Alternativas</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Veja como nos comparamos às outras opções do mercado.</p>
+    </div>
+    
+    <table class="compare-table animate-on-scroll">
+      <thead>
+        <tr>
+          <th>Funcionalidade</th>
+          <th>Ferramentas Self-Service</th>
+          <th>Agências Tradicionais</th>
+          <th class="highlight">ProspexAI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Preço mensal</td>
+          <td>R$ 800-3.000</td>
+          <td>R$ 15.000-130.000</td>
+          <td class="highlight"><strong class="gold">R$ 297-7.997</strong></td>
+        </tr>
+        <tr>
+          <td>Automação end-to-end</td>
+          <td><span class="compare-x">✗</span> Parcial</td>
+          <td><span class="compare-partial">⚠️ Manual</span></td>
+          <td class="highlight"><span class="compare-check">✓</span> 5 Agentes IA</td>
+        </tr>
+        <tr>
+          <td>Qualificação SPIN</td>
+          <td><span class="compare-x">✗</span></td>
+          <td><span class="compare-x">✗</span></td>
+          <td class="highlight"><span class="compare-check">✓</span> SDR IA Nativo</td>
+        </tr>
+        <tr>
+          <td>WhatsApp integrado</td>
+          <td><span class="compare-x">✗</span></td>
+          <td><span class="compare-partial">⚠️ Manual</span></td>
+          <td class="highlight"><span class="compare-check">✓</span> 98% abertura</td>
+        </tr>
+        <tr>
+          <td>Memória persistente</td>
+          <td><span class="compare-x">✗</span></td>
+          <td><span class="compare-partial">⚠️ Humano</span></td>
+          <td class="highlight"><span class="compare-check">✓</span> PostgreSQL</td>
+        </tr>
+        <tr>
+          <td>Roteiro pronto por lead</td>
+          <td><span class="compare-x">✗</span></td>
+          <td><span class="compare-partial">⚠️ Opaco</span></td>
+          <td class="highlight"><span class="compare-check">✓</span> 2 min/lead</td>
+        </tr>
+        <tr>
+          <td>Transparência</td>
+          <td><span class="compare-check">✓</span> Total</td>
+          <td><span class="compare-x">✗</span> Black box</td>
+          <td class="highlight"><span class="compare-check">✓</span> Total</td>
+        </tr>
+        <tr>
+          <td>Taxa de resposta</td>
+          <td>3-5%</td>
+          <td>10-15%</td>
+          <td class="highlight"><strong class="gold">20-30%</strong></td>
+        </tr>
+        <tr>
+          <td>Você trabalha?</td>
+          <td><span class="compare-x">✗</span> Muito</td>
+          <td><span class="compare-check">✓</span> Não</td>
+          <td class="highlight"><span class="compare-check">✓</span> Mínimo</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PLANOS -->
+  <section id="planos" class="section">
+    <div style="text-align: center;">
+      <div class="section-tag">Investimento</div>
+      <h2 class="section-title">Planos <span class="gold">Prospex AI</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Escolha o plano ideal para o tamanho da sua operação.</p>
+    </div>
+    
+    <div class="planos-grid">
+      <div class="plano-card">
+        <div class="plano-header">
+          <div class="plano-name">Starter</div>
+          <div class="plano-desc">Para começar a automatizar</div>
+          <div class="plano-price">R$ 297<span>/mês</span></div>
+        </div>
+        <ul class="plano-features">
+          <li><span class="icon">✓</span> 2.000 leads/mês</li>
+          <li><span class="icon">✓</span> Coleta Google Maps</li>
+          <li><span class="icon">✓</span> Enriquecimento básico</li>
+          <li><span class="icon">✓</span> Dashboard de métricas</li>
+          <li><span class="icon">✓</span> Suporte por email</li>
+        </ul>
+        <a href="https://buy.stripe.com/cNi4gsfPrgIK3hifRsak00c" class="btn btn-outline" style="width: 100%;" target="_blank">Começar Agora</a>
+      </div>
+      
+      <div class="plano-card featured">
+        <div class="plano-badge">Mais Popular</div>
+        <div class="plano-header">
+          <div class="plano-name">Growth</div>
+          <div class="plano-desc">Para escalar resultados</div>
+          <div class="plano-price">R$ 597<span>/mês</span></div>
+        </div>
+        <ul class="plano-features">
+          <li><span class="icon">✓</span> 5.000 leads/mês</li>
+          <li><span class="icon">✓</span> Tudo do Starter +</li>
+          <li><span class="icon">✓</span> Validação de email</li>
+          <li><span class="icon">✓</span> 300 enriquecimentos/mês</li>
+          <li><span class="icon">✓</span> Integração CRM</li>
+          <li><span class="icon">✓</span> Suporte prioritário</li>
+        </ul>
+        <a href="https://buy.stripe.com/14A5kwav75020565cOak00a" class="btn btn-gold" style="width: 100%;" target="_blank">Começar Agora</a>
+      </div>
+      
+      <div class="plano-card">
+        <div class="plano-header">
+          <div class="plano-name">Pro</div>
+          <div class="plano-desc">Para operações robustas</div>
+          <div class="plano-price">R$ 997<span>/mês</span></div>
+        </div>
+        <ul class="plano-features">
+          <li><span class="icon">✓</span> 10.000 leads/mês</li>
+          <li><span class="icon">✓</span> Tudo do Growth +</li>
+          <li><span class="icon">✓</span> API access</li>
+          <li><span class="icon">✓</span> Webhooks</li>
+          <li><span class="icon">✓</span> Suporte dedicado</li>
+        </ul>
+        <a href="https://buy.stripe.com/bJecMY6eR9gi0560Wyak00b" class="btn btn-outline" style="width: 100%;" target="_blank">Começar Agora</a>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 48px;">
+      <p style="color: var(--text-muted);">Precisa de mais? Conheça o <a href="#produtos" style="color: var(--gold);">Prospex Surge</a> para leads done-for-you ou o <a href="#produtos" style="color: var(--gold);">Prospex Setup</a> para implementação personalizada.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GARANTIAS -->
+  <section class="section">
+    <div style="text-align: center;">
+      <div class="section-tag">Garantias</div>
+      <h2 class="section-title">Risco <span class="green">zero</span> para você</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Acreditamos tanto no nosso produto que oferecemos garantias reais.</p>
+    </div>
+    
+    <div class="garantias-grid animate-on-scroll">
+      <div class="garantia-card">
+        <div class="garantia-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></div>
+        <h3>7 Dias para Testar</h3>
+        <p>Não gostou? Devolvemos 100% do valor. Sem perguntas, sem burocracia.</p>
+      </div>
+      <div class="garantia-card">
+        <div class="garantia-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="m8 12 4 4 4-4"/></svg></div>
+        <h3>Entrega Garantida</h3>
+        <p>Se não entregarmos o volume contratado, você recebe crédito proporcional.</p>
+      </div>
+      <div class="garantia-card">
+        <div class="garantia-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></div>
+        <h3>Sem Lock-in</h3>
+        <p>Planos mensais sem contrato mínimo. Cancele quando quiser com 30 dias de aviso.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div style="text-align: center;">
+      <div class="section-tag">Dúvidas?</div>
+      <h2 class="section-title">Perguntas <span class="gold">Frequentes</span></h2>
+    </div>
+    
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Quanto tempo até ver resultados?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Sistema funcionando: imediatamente após onboarding. Primeiros leads qualificados: 3-5 dias. Primeiras reuniões agendadas: 1-2 semanas. ROI positivo: tipicamente 30-60 dias.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Preciso de conhecimento técnico?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Não para usar o Prospex AI ou Surge - são plug-and-play. Para o Setup, é bom ter alguém minimamente técnico na equipe para operar depois, mas treinamos completamente.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Funciona para qualquer nicho B2B?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Sim, desde que seja B2B. Personalizamos os prompts e fontes de dados para seu mercado específico. Quanto mais definido o ICP, melhores os resultados.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Qual a diferença entre Prospex AI, Setup e Surge?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <strong>Prospex AI:</strong> Plataforma SaaS onde você opera. R$ 297-997/mês.<br>
+            <strong>Prospex Setup:</strong> Implementamos tudo na sua infraestrutura. R$ 4.997-14.997 (único).<br>
+            <strong>Prospex Surge:</strong> Nós operamos e entregamos leads prontos. R$ 2.497-7.997/mês.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Os leads são exclusivos?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Sim, no Prospex Surge os leads são 100% exclusivos - não compartilhamos com outros clientes. No Prospex AI, você mesmo faz a coleta, então são naturalmente exclusivos.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Como funciona o SDR com IA?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Nosso SDR IA usa metodologia SPIN Selling para qualificar leads via WhatsApp. Ele faz perguntas de Situação, Problema, Implicação e Need-payoff, identifica oportunidades reais, trata objeções e agenda reuniões automaticamente no seu calendário.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Integra com meu CRM?</h4>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Sim! Temos integração nativa com Pipedrive, HubSpot e RD Station. Outros CRMs podem ser conectados via Zapier, Make ou API direta.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA FINAL -->
+  <section id="contato" class="cta-section">
+    <div class="cta-container">
+      <div class="section-tag">Próximo Passo</div>
+      <h2>Pronto para <span class="gold">automatizar</span> sua prospecção?</h2>
+      <p>Agende uma conversa de 15 minutos com nosso time. Vamos entender seu cenário e mostrar como a ProspexAI pode transformar seus resultados.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/5519999546490?text=Ol%C3%A1!%20Tenho%20interesse%20em%20agendar%20uma%20reuni%C3%A3o%20para%20conhecer%20a%20ProspexAI" class="btn btn-gold" target="_blank">Agendar Reunião Gratuita →</a>
+        <a href="https://wa.me/5519999546490" class="btn btn-outline" target="_blank">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 ProspexAI - Leads Quentes Entregues | Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    // ===== AGENTES TABS =====
+    const agenteCards = document.querySelectorAll('.agente-card');
+    const agenteDetails = document.querySelectorAll('.agente-detail');
+    
+    agenteCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const agente = card.dataset.agente;
+        
+        agenteCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        
+        agenteDetails.forEach(d => d.classList.remove('active'));
+        document.getElementById('detail-' + agente).classList.add('active');
+      });
+    });
+    
+    // ===== PRODUTOS TABS =====
+    const produtoTabs = document.querySelectorAll('.produto-tab');
+    const produtoContents = document.querySelectorAll('.produto-content');
+    
+    produtoTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const produto = tab.dataset.produto;
+        
+        produtoTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        produtoContents.forEach(c => c.classList.remove('active'));
+        document.getElementById('produto-' + produto).classList.add('active');
+      });
+    });
+    
+    // ===== FAQ ACCORDION =====
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        faqItems.forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+    
+    // ===== CALCULADORA ROI =====
+    const ticketSlider = document.getElementById('ticket');
+    const leadsSlider = document.getElementById('leads');
+    const conversaoSlider = document.getElementById('conversao');
+    const planoSelect = document.getElementById('plano');
+    
+    function formatCurrency(value) {
+      return 'R$ ' + value.toLocaleString('pt-BR');
+    }
+    
+    function calculateROI() {
+      const ticket = parseInt(ticketSlider.value);
+      const leads = parseInt(leadsSlider.value);
+      const conversao = parseFloat(conversaoSlider.value) / 100;
+      const plano = parseInt(planoSelect.value);
+      
+      // Update display values
+      document.getElementById('ticket-value').textContent = formatCurrency(ticket);
+      document.getElementById('leads-value').textContent = leads;
+      document.getElementById('conversao-value').textContent = (conversao * 100).toFixed(1) + '%';
+      
+      // Calculate results
+      const clientes = Math.round(leads * conversao);
+      const receita = clientes * ticket;
+      const lucro = receita - plano;
+      const roi = plano > 0 ? Math.round((lucro / plano) * 100) : 0;
+      
+      // Update results
+      document.getElementById('result-clientes').textContent = clientes;
+      document.getElementById('result-receita').textContent = formatCurrency(receita);
+      document.getElementById('result-investimento').textContent = formatCurrency(plano);
+      document.getElementById('result-lucro').textContent = formatCurrency(lucro);
+      document.getElementById('result-roi').textContent = roi.toLocaleString('pt-BR') + '%';
+    }
+    
+    ticketSlider.addEventListener('input', calculateROI);
+    leadsSlider.addEventListener('input', calculateROI);
+    conversaoSlider.addEventListener('input', calculateROI);
+    planoSelect.addEventListener('change', calculateROI);
+    
+    // Initial calculation
+    calculateROI();
+    
+    // ===== SCROLL ANIMATIONS =====
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    animatedElements.forEach(el => observer.observe(el));
+    
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
